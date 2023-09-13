@@ -1,4 +1,4 @@
-﻿namespace TaskManagementSystem.Core
+﻿namespace ApplicationShared
 {
     public class Class1
     {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApplicationShared.Dto.UserDto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,10 @@ namespace TaskManagementSystem.Application.IApplicationServices
     public interface IUserAppService
     {
 
-        Task<User> GetUser(int id);
-        Task<List<User>> GetAllUsers();
-        Task CreateUser(User input);
-        Task UpdateUser(User input);
+        Task<UserDto> GetUser(int id);
+        Task<List<UserDto>> GetAllUsers();
+        Task CreateUser(CreateUserInput input);
+        Task UpdateUser(UpdateUserInput input);
         Task DeleteUser(int id);
     }
 }

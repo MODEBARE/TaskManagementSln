@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ApplicationShared.Dto.ProjectDto;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskManagementSystem.Application.ApplicationServices;
 using TaskManagementSystem.Application.IApplicationServices;
 using TaskManagementSystem.Core.Entities;
-using TaskManagementSystem.Core.Interfaces;
+using TaskManagementSystem.Infrastucture.Interfaces;
 
 namespace TaskManagementSystem.Web.Controllers
 {
@@ -29,14 +30,14 @@ namespace TaskManagementSystem.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Project>>> GetAllProjects()
+        public async Task<ActionResult<List<ProjectDto>>> GetAllProjects()
         {
             var project = await _projectAppService.GetAllProjects();
             return Ok(project);
         }
 
         [HttpGet("{projectId}")]
-        public async Task<ActionResult<Project>> GetProject(int projectId)
+        public async Task<ActionResult<ProjectDto>> GetProject(int projectId)
         {
             var project = await _projectAppService.GetProject(projectId);
             if (project == null)
@@ -48,7 +49,7 @@ namespace TaskManagementSystem.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProject([FromBody] Project input)
+        public async Task<IActionResult> CreateProject(CreateProjectInput input)
         {
             if (input == null)
             {
@@ -56,13 +57,13 @@ namespace TaskManagementSystem.Web.Controllers
             }
 
             await _projectAppService.CreateProject(input);
-            return CreatedAtAction(nameof(GetProject), new { taskId = input.Id }, input);
+            return CreatedAtAction(nameof(GetProject), new { }, input);
         }
 
         [HttpPut("{projectId}")]
-        public async Task<IActionResult> UpdateProject(int projectId, [FromBody] Project input)
+        public async Task<IActionResult> UpdateProject(UpdateProjectInput input)
         {
-            if (input == null || input.Id != projectId)
+            if (input == null )
             {
                 return BadRequest();
             }

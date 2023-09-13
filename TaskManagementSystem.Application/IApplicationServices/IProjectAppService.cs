@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApplicationShared.Dto.ProjectDto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,10 @@ namespace TaskManagementSystem.Application.IApplicationServices
     public interface IProjectAppService
     {
 
-        Task<Project> GetProject(int id);
-        Task<List<Project>> GetAllProjects();
-        Task CreateProject(Project input);
-        Task UpdateProject(Project input);
+        Task<ProjectDto> GetProject(int id);
+        Task<List<ProjectDto>> GetAllProjects();
+        Task CreateProject(CreateProjectInput input);
+        Task UpdateProject(UpdateProjectInput input);
         Task DeleteProject(int id);
     }
 }

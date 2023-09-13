@@ -12,12 +12,14 @@ using TaskManagementSystem.Core.Entities.Enums;
 public class NotificationService : IHostedService, IDisposable
 {
     private readonly IServiceProvider _services;
+    private readonly EmailService _emailService;
     private readonly TimeSpan _notificationCheckInterval = TimeSpan.FromHours(1); // Adjust as needed
     private Timer _timer;
 
-    public NotificationService(IServiceProvider services)
+    public NotificationService(IServiceProvider services, EmailService emailService)
     {
         _services = services;
+        _emailService = emailService;
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
@@ -26,7 +28,7 @@ public class NotificationService : IHostedService, IDisposable
         return Task.CompletedTask;
     }
 
-    private void CheckAndSendNotifications(object state)
+    private async void CheckAndSendNotifications(object state)
     {
         using (var scope = _services.CreateScope())
         {
@@ -48,10 +50,18 @@ public class NotificationService : IHostedService, IDisposable
                     Type = "Due Date Reminder",
                     Message = $"Task '{task.Title}' is due soon.",
                     Timestamp = now,
-                    UserId = task.UserId
+                    UserId = task.User.Id,
                 };
 
                 dbContext.Notifications.Add(notification);
+
+                // Send an email notification
+                var emailService = scope.ServiceProvider.GetRequiredService<EmailService>();
+                var user = dbContext.Users.FirstOrDefault(u => u.Id == task.User.Id);
+                if (user != null)
+                {
+                    await _emailService.SendEmailAsync(user.Email, "Task Due Date Reminder", notification.Message);
+                }
             }
 
             // Check and send notifications for task completion
@@ -68,7 +78,7 @@ public class NotificationService : IHostedService, IDisposable
                     Type = "Task Completed",
                     Message = $"Task '{task.Title}' has been completed.",
                     Timestamp = now,
-                    UserId = task.UserId
+                    UserId = task.User.Id
                 };
 
                 dbContext.Notifications.Add(notification);

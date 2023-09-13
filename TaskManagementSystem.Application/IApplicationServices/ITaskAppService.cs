@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ApplicationShared.Dto.TaskDto;
+using ApplicationSharedDto.TaskDto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +11,10 @@ namespace TaskManagementSystem.Application.IApplicationServices
 {
     public interface ITaskAppService
     {
-            Task<Tasks> GetTask(int id);
-            Task<List<Tasks>> GetAllTasks();
-            Task CreateTask(Tasks input);
-            Task UpdateTask(Tasks input);
+            Task<TaskDto> GetTask(int id);
+            Task<List<TaskDto>> GetAllTasks();
+            Task CreateTask(CreateTaskInput input);
+            Task UpdateTask(UpdateTaskInput input);
             Task DeleteTask(int id);
        
     }

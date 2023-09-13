@@ -3,8 +3,8 @@ using Microsoft.Extensions.Configuration;
 using TaskManagementSystem.Application.ApplicationServices;
 using TaskManagementSystem.Application.IApplicationServices;
 using TaskManagementSystem.Core.Entities;
-using TaskManagementSystem.Core.Interfaces;
 using TaskManagementSystem.Infrastucture.Data;
+using TaskManagementSystem.Infrastucture.Interfaces;
 using TaskManagementSystem.Infrastucture.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +26,18 @@ builder.Services.AddScoped<INotificationAppService, NotificationAppService>();
 //Background service
 
     builder.Services.AddHostedService<NotificationService>();
+
+// Configure AutoMapper
+builder.Services.AddAutoMapper(typeof(Program));
+
+// Configure EmailService
+var emailSettings = builder.Configuration.GetSection("EmailSettings").Get<EmailSettings>();
+builder.Services.AddSingleton(new EmailService(
+    emailSettings.SmtpServer,
+    emailSettings.SmtpPort,
+    emailSettings.SmtpUsername,
+    emailSettings.SmtpPassword
+));
 
 
 

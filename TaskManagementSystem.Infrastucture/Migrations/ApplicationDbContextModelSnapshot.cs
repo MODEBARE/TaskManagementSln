@@ -28,6 +28,7 @@ namespace TaskManagementSystem.Infrastucture.Migrations
 
                     b.Property<string>("Message")
                         .IsRequired()
+                        .HasMaxLength(500)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Timestamp")
@@ -35,6 +36,7 @@ namespace TaskManagementSystem.Infrastucture.Migrations
 
                     b.Property<string>("Type")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("UserId")
@@ -55,13 +57,21 @@ namespace TaskManagementSystem.Infrastucture.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasMaxLength(250)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("TaskId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TaskId")
+                        .IsUnique();
 
                     b.ToTable("Projects");
                 });
@@ -74,6 +84,7 @@ namespace TaskManagementSystem.Infrastucture.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasMaxLength(250)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DueDate")
@@ -82,22 +93,18 @@ namespace TaskManagementSystem.Infrastucture.Migrations
                     b.Property<int>("Priority")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ProjectId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProjectId");
 
                     b.HasIndex("UserId");
 
@@ -112,11 +119,19 @@ namespace TaskManagementSystem.Infrastucture.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("NotificationId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TaskId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -132,24 +147,27 @@ namespace TaskManagementSystem.Infrastucture.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TaskManagementSystem.Core.Entities.Project", b =>
+                {
+                    b.HasOne("TaskManagementSystem.Core.Entities.Tasks", "Tasks")
+                        .WithOne("Project")
+                        .HasForeignKey("TaskManagementSystem.Core.Entities.Project", "TaskId");
+
+                    b.Navigation("Tasks");
+                });
+
             modelBuilder.Entity("TaskManagementSystem.Core.Entities.Tasks", b =>
                 {
-                    b.HasOne("TaskManagementSystem.Core.Entities.Project", "Project")
-                        .WithMany("Tasks")
-                        .HasForeignKey("ProjectId");
-
                     b.HasOne("TaskManagementSystem.Core.Entities.User", "User")
                         .WithMany("Tasks")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("Project");
-
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TaskManagementSystem.Core.Entities.Project", b =>
+            modelBuilder.Entity("TaskManagementSystem.Core.Entities.Tasks", b =>
                 {
-                    b.Navigation("Tasks");
+                    b.Navigation("Project");
                 });
 
             modelBuilder.Entity("TaskManagementSystem.Core.Entities.User", b =>

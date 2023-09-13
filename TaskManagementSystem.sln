@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagementSystem.Web", "TaskManagementSystem.Web\TaskManagementSystem.Web.csproj", "{FC528C40-C923-40A0-A76B-F4A055822FC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagementSystem.Web", "TaskManagementSystem.Web\TaskManagementSystem.Web.csproj", "{FC528C40-C923-40A0-A76B-F4A055822FC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagementSystem.Core", "TaskManagementSystem.Core\TaskManagementSystem.Core.csproj", "{4300FE30-850F-4672-BA8A-6346E384995F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagementSystem.Core", "TaskManagementSystem.Core\TaskManagementSystem.Core.csproj", "{4300FE30-850F-4672-BA8A-6346E384995F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagementSystem.Application", "TaskManagementSystem.Application\TaskManagementSystem.Application.csproj", "{BA99F6EB-4751-41E3-854B-42001F497B55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagementSystem.Application", "TaskManagementSystem.Application\TaskManagementSystem.Application.csproj", "{BA99F6EB-4751-41E3-854B-42001F497B55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagementSystem.Infrastucture", "TaskManagementSystem.Infrastucture\TaskManagementSystem.Infrastucture.csproj", "{F1E063CF-4793-4C69-AF88-722AF472D488}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskManagementSystem.Infrastucture", "TaskManagementSystem.Infrastucture\TaskManagementSystem.Infrastucture.csproj", "{F1E063CF-4793-4C69-AF88-722AF472D488}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationShared", "ApplicationShared\ApplicationShared.csproj", "{D85EACD3-2DFF-43EA-A3A9-20D0F47B3347}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F1E063CF-4793-4C69-AF88-722AF472D488}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1E063CF-4793-4C69-AF88-722AF472D488}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1E063CF-4793-4C69-AF88-722AF472D488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D85EACD3-2DFF-43EA-A3A9-20D0F47B3347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D85EACD3-2DFF-43EA-A3A9-20D0F47B3347}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D85EACD3-2DFF-43EA-A3A9-20D0F47B3347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D85EACD3-2DFF-43EA-A3A9-20D0F47B3347}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

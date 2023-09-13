@@ -6,8 +6,8 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManagementSystem.Core.Entities;
-using TaskManagementSystem.Core.Interfaces;
 using TaskManagementSystem.Infrastucture.Data;
+using TaskManagementSystem.Infrastucture.Interfaces;
 
 namespace TaskManagementSystem.Infrastucture.Repositories
 {

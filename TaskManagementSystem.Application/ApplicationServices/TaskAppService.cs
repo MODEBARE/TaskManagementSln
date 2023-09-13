@@ -1,47 +1,61 @@
-﻿using System;
+﻿using ApplicationShared.Dto.TaskDto;
+using ApplicationSharedDto.TaskDto;
+using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaskManagementSystem.Application.IApplicationServices;
 using TaskManagementSystem.Core.Entities;
-using TaskManagementSystem.Core.Interfaces;
+using TaskManagementSystem.Infrastucture.Interfaces;
 
 namespace TaskManagementSystem.Application.ApplicationServices
 {
     public class TaskAppService : ITaskAppService
     {
         private readonly ITaskRepository<Tasks, int> _taskRepository;
+        private readonly IMapper _mapper;
 
-        public TaskAppService(ITaskRepository<Tasks, int> taskRepository)
+        public TaskAppService(ITaskRepository<Tasks, int> taskRepository, IMapper mapper)
         {
             _taskRepository = taskRepository;
+            _mapper = mapper;
         }
 
-        public async Task<Tasks> GetTask(int id)
+        public async Task<TaskDto> GetTask(int id)
         {
-            return await _taskRepository.GetByIdAsync(id);
+            var task= await _taskRepository.GetByIdAsync(id);
+            var taskDtos = _mapper.Map<TaskDto>(task);
+            return taskDtos;
+
         }
 
-        public async Task<List<Tasks>> GetAllTasks()
+        public async Task<List<TaskDto>> GetAllTasks()
         {
-            return await _taskRepository.GetAllAsync();
+            var task = await _taskRepository.GetAllAsync();
+            var taskDtos = _mapper.Map<List<TaskDto>>(task);
+            return taskDtos;
         }
 
-        public async Task CreateTask(Tasks task)
+        public async Task CreateTask(CreateTaskInput input)
         {
-            // Add any business logic or validation here before saving
-            var existingEntity = await _taskRepository.FirstOrDefaultAsync(c => c.Title == task.Title);
+            //  business logic/validation 
+            var existingEntity = await _taskRepository.FirstOrDefaultAsync(c => c.Title == input.Title);
             if (existingEntity != null)
             {
                 throw new InvalidOperationException("A task with the same title already exists.");
             }
+
+          
+            var task = _mapper.Map<Tasks>(input);
             await _taskRepository.CreateAsync(task);
+            
         }
 
-        public async Task UpdateTask(Tasks input)
+        public async Task UpdateTask(UpdateTaskInput input)
         {
-            // Add any business logic or validation here before updating
+            // Add business logic/validation
 
             var task = await _taskRepository.GetAsync(input.Id);
 
@@ -52,7 +66,9 @@ namespace TaskManagementSystem.Application.ApplicationServices
                 throw new InvalidOperationException("A task with the same title already exists.");
             }
 
-            await _taskRepository.UpdateAsync(task);
+            var tasks = _mapper.Map<Tasks>(input);
+
+            await _taskRepository.UpdateAsync(tasks);
         }
 
         public async Task DeleteTask(int id)

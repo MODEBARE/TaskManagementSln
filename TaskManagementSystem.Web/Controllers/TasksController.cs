@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ApplicationShared.Dto.TaskDto;
+using ApplicationSharedDto.TaskDto;
+using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskManagementSystem.Application.IApplicationServices;
 using TaskManagementSystem.Core.Entities;
 using TaskManagementSystem.Core.Entities.Enums;
-using TaskManagementSystem.Core.Interfaces;
+using TaskManagementSystem.Infrastucture.Interfaces;
 
 namespace TaskManagementSystem.Web.Controllers
 {
@@ -15,25 +18,28 @@ namespace TaskManagementSystem.Web.Controllers
         private readonly ITaskAppService _taskAppService;
         private readonly ITaskRepository<Tasks, int> _taskRepository;
         private readonly IProjectRepository<Project, int> _projectRepository;
+      
 
         public TasksController(ITaskAppService taskAppService, 
             ITaskRepository<Tasks, int> taskRepository,
-            IProjectRepository<Project, int> projectRepository)
+            IProjectRepository<Project, int> projectRepository
+            )
         {
             _taskAppService = taskAppService;
             _taskRepository = taskRepository;
             _projectRepository = projectRepository;
+           
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Tasks>>> GetAllTasks()
+        public async Task<ActionResult<List<TaskDto>>> GetAllTasks()
         {
             var tasks = await _taskAppService.GetAllTasks();
             return Ok(tasks);
         }
 
         [HttpGet("{taskId}")]
-        public async Task<ActionResult<Tasks>> GetTask(int taskId)
+        public async Task<ActionResult<TaskDto>> GetTask(int taskId)
         {
             var task = await _taskAppService.GetTask(taskId);
             if (task == null)
@@ -45,7 +51,7 @@ namespace TaskManagementSystem.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTask([FromBody] Tasks input)
+        public async Task<IActionResult> CreateTask(CreateTaskInput input)
         {
             if (input == null)
             {
@@ -53,13 +59,13 @@ namespace TaskManagementSystem.Web.Controllers
             }
 
             await _taskAppService.CreateTask(input);
-            return CreatedAtAction(nameof(GetTask), new { taskId = input.Id }, input);
+            return CreatedAtAction(nameof(GetTask), new {  }, input);
         }
 
         [HttpPut("{taskId}")]
-        public async Task<IActionResult> UpdateTask(int taskId, [FromBody] Tasks input)
+        public async Task<IActionResult> UpdateTask(UpdateTaskInput input)
         {
-            if (input == null || input.Id != taskId)
+            if (input == null)
             {
                 return BadRequest();
             }

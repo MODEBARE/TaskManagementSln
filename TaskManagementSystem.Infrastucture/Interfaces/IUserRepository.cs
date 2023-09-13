@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskManagementSystem.Core.Entities;
 
-namespace TaskManagementSystem.Core.Interfaces
+namespace TaskManagementSystem.Infrastucture.Interfaces
 {
     public interface IUserRepository<TEntity, TPrimaryKey> where TEntity : class
     {

@@ -12,13 +12,15 @@ namespace TaskManagementSystem.Core.Entities
     public class Tasks : BaseEntity
     {
         [Required]
-        public virtual string Title { get; set; }
+        [MaxLength(50)]
+        public string Title { get; set; }
 
         [Required]
-        public virtual string Description { get; set; }
+        [MaxLength(250)]
+        public string Description { get; set; }
 
         [Required]
-        public virtual DateTime DueDate { get; set; }
+        public DateTime DueDate { get; set; }
 
         [Required]
         public Priority Priority { get; set; }
@@ -26,13 +28,8 @@ namespace TaskManagementSystem.Core.Entities
         [Required]
         public Status Status { get; set; }
 
-        // Navigation properties
-        [ForeignKey("ProjectId")]
-        public Project? Project { get; set; }
-        public int? ProjectId { get; set; }
+        public Project Project { get; set; }
 
-        [ForeignKey("UserId")]
-        public User? User { get; set; }
-        public int? UserId { get; set; }
+        public User User { get; set; }
     }
 }

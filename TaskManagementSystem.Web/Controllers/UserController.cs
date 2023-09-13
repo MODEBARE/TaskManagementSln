@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ApplicationShared.Dto.UserDto;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Application.ApplicationServices;
 using TaskManagementSystem.Application.IApplicationServices;
@@ -18,14 +19,14 @@ namespace TaskManagementSystem.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<User>>> GetAllUsers()
+        public async Task<ActionResult<List<UserDto>>> GetAllUsers()
         {
             var users = await _userAppService.GetAllUsers();
             return Ok(users);
         }
 
         [HttpGet("{userId}")]
-        public async Task<ActionResult<User>> GetUser(int userId)
+        public async Task<ActionResult<UserDto>> GetUser(int userId)
         {
             var user = await _userAppService.GetUser(userId);
             if (user == null)
@@ -37,7 +38,7 @@ namespace TaskManagementSystem.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] User input)
+        public async Task<IActionResult> CreateUser(CreateUserInput input)
         {
             if (input == null)
             {
@@ -45,13 +46,13 @@ namespace TaskManagementSystem.Web.Controllers
             }
 
             await _userAppService.CreateUser(input);
-            return CreatedAtAction(nameof(GetUser), new { userId = input.Id }, input);
+            return CreatedAtAction(nameof(GetUser), new {  }, input);
         }
 
         [HttpPut("{userId}")]
-        public async Task<IActionResult> UpdateUser(int userId, [FromBody] User input)
+        public async Task<IActionResult> UpdateUser( UpdateUserInput input)
         {
-            if (input == null || input.Id != userId)
+            if (input == null )
             {
                 return BadRequest();
             }

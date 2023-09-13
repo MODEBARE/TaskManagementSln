@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ApplicationShared.Dto.NotificationDto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace TaskManagementSystem.Application.IApplicationServices
     public interface INotificationAppService
     {
 
-        Task<Notification> GetNotification(int id);
-        Task<List<Notification>> GetAllNotification();
+        Task<NotificationDto> GetNotification(int id);
+        Task<List<NotificationDto>> GetAllNotification();
         Task CreateNotification(Notification input);
         Task UpdateNotification(Notification input);
         Task DeleteNotification(int id);

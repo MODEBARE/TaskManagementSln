@@ -11,9 +11,11 @@ namespace TaskManagementSystem.Core.Entities
     public class Project: BaseEntity
     {
         [Required]
+        [MaxLength(50)]
         public virtual string Name { get; set; }
 
         [Required]
+        [MaxLength(250)]
         public virtual string Description { get; set; }
 
         // Navigation property

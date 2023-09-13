@@ -11,9 +11,11 @@ namespace TaskManagementSystem.Core.Entities
     public class Notification : BaseEntity
     {
         [Required]
+        [MaxLength(100)]
         public virtual string Type { get; set; }
 
         [Required]
+        [MaxLength(500)]
         public virtual string Message { get; set; }
 
         [Required]

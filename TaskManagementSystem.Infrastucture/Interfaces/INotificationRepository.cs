@@ -6,17 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using TaskManagementSystem.Core.Entities;
 
-namespace TaskManagementSystem.Core.Interfaces
+namespace TaskManagementSystem.Infrastucture.Interfaces
 {
-    public interface IProjectRepository<TEntity, TPrimaryKey> where TEntity : class
+    public interface INotificationRepository<TEntity, TPrimaryKey> where TEntity : class
     {
-        Task<List<Project>> GetAllAsync();
+        Task<List<Notification>> GetAllAsync();
 
-        Task<Project> GetByIdAsync(int id);
+        Task<Notification> GetByIdAsync(int id);
 
-        Task CreateAsync(Project input);
+        Task CreateAsync(Notification input);
 
-        Task UpdateAsync(Project input);
+        Task UpdateAsync(Notification input);
 
         Task DeleteAsync(int id);
 

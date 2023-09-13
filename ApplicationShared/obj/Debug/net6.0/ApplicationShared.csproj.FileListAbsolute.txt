@@ -1,0 +1,15 @@
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\obj\Debug\net6.0\ApplicationShared.csproj.AssemblyReference.cache
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\obj\Debug\net6.0\ApplicationShared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\obj\Debug\net6.0\ApplicationShared.AssemblyInfoInputs.cache
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\obj\Debug\net6.0\ApplicationShared.AssemblyInfo.cs
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\obj\Debug\net6.0\ApplicationShared.csproj.CoreCompileInputs.cache
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\bin\Debug\net6.0\ApplicationShared.deps.json
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\bin\Debug\net6.0\ApplicationShared.dll
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\bin\Debug\net6.0\ApplicationShared.pdb
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\bin\Debug\net6.0\TaskManagementSystem.Core.dll
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\bin\Debug\net6.0\TaskManagementSystem.Core.pdb
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\obj\Debug\net6.0\ApplicationShared.csproj.CopyComplete
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\obj\Debug\net6.0\ApplicationShared.dll
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\obj\Debug\net6.0\refint\ApplicationShared.dll
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\obj\Debug\net6.0\ApplicationShared.pdb
+C:\Users\Fintrak\source\repos\TaskManagementSystem\ApplicationShared\obj\Debug\net6.0\ref\ApplicationShared.dll

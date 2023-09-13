@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "OXuiBKhY6NQzPhd13ZLmU/57keAIJiKoasvgY5Znpfk=",
+  "Source": "TaskManagementSystem.Web",
+  "BasePath": "_content/TaskManagementSystem.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
